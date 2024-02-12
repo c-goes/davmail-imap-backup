@@ -1,0 +1,9 @@
+FROM quay.io/curl/curl:latest AS installer
+
+RUN curl -Lo /tmp/davmail.deb https://sourceforge.net/projects/davmail/files/davmail/6.2.1/davmail_6.2.1-3496-1_all.deb/download
+
+FROM docker.io/debian:trixie
+
+COPY --from=installer /tmp/davmail.deb /tmp/davmail.deb
+RUN apt-get update && apt-get -y install default-jre openjfx
+RUN dpkg -i /tmp/davmail.deb

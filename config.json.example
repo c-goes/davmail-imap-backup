@@ -1,0 +1,20 @@
+{
+  "version": "2.2",
+  "accounts": [
+    {
+      "username": "user@domain.test",
+      "password": "password",
+      "local_path": "/data",
+      "folders": [
+
+      ],
+      "server": "127.0.0.1",
+      "connection_options": {
+        "ssl": false,
+        "port": 1143
+      },
+      "multi_fetch_size": 1
+    }
+  ],
+  "download_strategy": "delay_metadata"
+}

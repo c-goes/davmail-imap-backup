@@ -1,0 +1,28 @@
+---
+version: '3'
+services:
+  imap-backup:
+    read_only: true
+    build:
+      context: imap-backup
+    image: localhost/imap-backup
+    command: ["imap-backup", "backup", "-v", "-c", "/config.json"]
+    volumes:
+      - ./backup-location:/data
+      - ./config.json:/config.json
+    depends_on:
+      - davmail
+    links:
+      - davmail
+
+  davmail:
+    read_only: true
+    build:
+      context: davmail
+    image: localhost/davmail
+    command: ["davmail", "/davmail.properties"]
+    volumes:
+      - ./davmail.properties:/davmail.properties
+    ports:
+      - 1143:1143
+
